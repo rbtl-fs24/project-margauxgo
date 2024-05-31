@@ -7,6 +7,7 @@ author:
   - name: Margaux Götschmann
     affiliation:
       - name: 'ETH Zürich, Research Beyond the Lab: Open Science and Research Methods for a Global Engineer'
+table-of-contents: true
 execute: 
   echo: true
   warning: false
@@ -18,6 +19,14 @@ editor: visual
 ---
 
 # Introduction
+
+# Methods
+
+# Results
+
+# Conclusions
+
+# References
 
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
