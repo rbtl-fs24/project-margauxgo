@@ -1,0 +1,22 @@
+id,age,rec_plastic,rec_PET,rec_HDPE,rec_PP,rec_LDPE,rec_PS,plastic_impact_health,plastic_waste_source,use_plastic_bottles,own_reusable_bottle,willing_separate,investment,city_rec_bins,city_plastic_dr,city_incentives,city_awareness,use_plastic_bags,plastic_kg_year,confident
+1,24,Yes,Yes,Yes,No,No,No,microplastics,PET – water bottles and plastic trays,Once a week,Yes,Yes,Space,NA,NA,NA,NA,Once a week,NA,NA
+2,NA,Yes,Yes,Yes,Yes,Yes,Yes,NA,HDPE – milk jugs and shampoo bottles,Once a month,No,No,Space,NA,NA,NA,NA,Once a month,NA,NA
+3,NA,Yes,Yes,Yes,Yes,Yes,Yes,bad,PET – water bottles and plastic trays,Once a week,Yes,No,Space,NA,NA,NA,NA,Never,NA,NA
+4,22,Yes,Yes,No,No,No,No,microplastics,PET – water bottles and plastic trays,Once a day,Yes,Yes,Time,NA,NA,NA,NA,Once a week,NA,NA
+5,24,Yes,Yes,Yes,Yes,Yes,Yes,microplastics,PET – water bottles and plastic trays,Once a week,Yes,Yes,Time,NA,NA,NA,NA,Once a month,NA,NA
+6,20,Yes,Yes,Yes,No,No,No,bad,PET – water bottles and plastic trays,Once a week,Yes,No,NA,NA,NA,NA,NA,Once a day,NA,NA
+7,21,Yes,Yes,No,No,No,No,microplastics,PET – water bottles and plastic trays,Once a day,Yes,Yes,Money,NA,NA,NA,NA,Once a day,NA,NA
+8,23,Yes,Yes,Yes,No,No,No,bad,PET – water bottles and plastic trays,Never,Yes,Yes,Space,NA,NA,NA,NA,Once a year,NA,NA
+9,28,Yes,Yes,No,No,No,No,ends up in food and is toxic,PET – water bottles and plastic trays,Once a week,Yes,No,NA,NA,NA,NA,NA,Once a month,NA,NA
+10,NA,Yes,Yes,Yes,No,No,No,microplastics,PET – water bottles and plastic trays,Once a week,Yes,Yes,Time,NA,NA,NA,NA,Once a year,NA,NA
+11,NA,Yes,Yes,No,No,No,No,NA,PET – water bottles and plastic trays,Once a week,Yes,Yes,Mental capacity,NA,NA,NA,NA,Once a month,NA,NA
+12,NA,Yes,Yes,Yes,Yes,Yes,Yes,NA,HDPE – milk jugs and shampoo bottles,Once a week,Yes,Yes,Space,NA,NA,NA,NA,Once a year,NA,NA
+13,27,Yes,Yes,Yes,Yes,Yes,Yes,bad,LDPE – food bags,Once a week,Yes,Yes,Space,NA,NA,NA,NA,Once a month,NA,NA
+14,23,Sometimes,Yes,Sometimes,No,No,No,affects our immune system,PET – water bottles and plastic trays,Once a month,Yes,Yes,Time,NA,NA,NA,NA,2 or 3 times a month,65,2
+15,27,Yes,Yes,Yes,No,No,No,bad,PET – water bottles and plastic trays,Once a week,Yes,Yes,Where to dispose the trash,NA,NA,NA,NA,Few times a year,95,1
+16,22,Yes,Yes,Yes,No,No,No,air and water pollution due to microplastics,PP – margarine tubs and ready-meal trays,Few times a year,Yes,Yes,Space,Yes,Yes,Yes,Yes,Few times a year,25,2
+17,28,Yes,Yes,Yes,No,Yes,No,end up in food and is toxic,PET – water bottles and plastic trays,2 or 3 times a month,Yes,Yes,To persue my flatmates to do so aswell,Maybe,Yes,Maybe,Maybe,Once a year,65,4
+18,23,Yes,Yes,No,No,No,No,air and water pollution due to microplastics,HDPE – milk jugs and shampoo bottles,Once a week,Yes,Yes,Space,Yes,Yes,Yes,Yes,2 or 3 times a month,65,2
+19,23,Yes,Yes,Yes,Sometimes,Sometimes,Sometimes,end up in food and is toxic,PET – water bottles and plastic trays,Once a week,Yes,Yes,Space,Yes,Yes,Yes,Yes,Once a week,65,1
+20,23,Yes,Yes,Yes,No,Yes,No,microplastics end up in our organisms,PET – water bottles and plastic trays,Few times a year,Yes,Yes,Space,Yes,Yes,No,No,Once a month,95,4
+21,30,Yes,Yes,Yes,No,No,No,microplastics end up in our organisms,PP – margarine tubs and ready-meal trays,Once a week,Yes,Yes,Space,Yes,Yes,Maybe,Yes,2 or 3 times a month,95,1
