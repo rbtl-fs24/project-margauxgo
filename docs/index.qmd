@@ -20,14 +20,15 @@ editor: visual
 
 # Introduction
 
+Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually @2023year. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively @turuban2024why. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?
+
 # Methods
+
+Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize outliers and provide a focused perspective on the targeted demographic.
 
 # Results
 
-# Conclusions
-
-# References
-
+Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic?
 
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 library(tidyverse)
@@ -37,4 +38,45 @@ library(dplyr)
 
 data <- read_csv("../data/processed/plastic_waste_processed.csv")
 ```
+
+Now, what kind of plastics is recycled the most? To answer this, let us use a stacked bar chart.
+
+```{r, message=FALSE, warning=FALSE, include=TRUE}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+# Convert data to long format
+data_long <- data |> 
+  pivot_longer(cols = rec_PET:rec_PS, names_to = "plastic_type", values_to = "rec")
+# Calculate the proportions of each response
+data_proportions <- data_long |> 
+  group_by(plastic_type, rec) |> 
+  summarise(count = n(), .groups = "drop") |> 
+  group_by(plastic_type) |> 
+  mutate(proportion = count / sum(count))
+# Create the stacked bar chart
+ggplot(data_proportions, aes(x = plastic_type, y = proportion, fill = rec)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = scales::label_percent()) +
+  labs(
+    title = "Recycled plastics",
+    x = "Plastic type",
+    y = "Proportion",
+    fill = "Recycle"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
+```
+
+
+# Conclusions
+
+-
+-
+-
+
+# References
+
+
 
