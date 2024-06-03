@@ -30,13 +30,26 @@ Data was collected via a questionnaire distributed through Google Forms as part 
 
 Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic?
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=TRUE}
+# Load required libraries
 library(tidyverse)
 library(readxl)
 library(janitor)
 library(dplyr)
-
+library(knitr)
+library(kableExtra)
+# Import data
 data <- read_csv("../data/processed/plastic_waste_processed.csv")
+# Compute age mean
+age_mean <- mean(data$age, na.rm = TRUE)
+# Compute plastic recycling rate
+recycling_summary <- data |> 
+  group_by(rec_plastic) |> 
+  summarise(count = n()) |> 
+  mutate(percentage = round(count / sum(count) * 100, digits = 2))
+# Create table
+kable(recycling_summary, format = "html", col.names = c("Recycle", "Count", "Percentage"),
+      align = "c") 
 ```
 
 Now, what kind of plastics is recycled the most? To answer this, let us use a stacked bar chart.
@@ -49,26 +62,34 @@ library(tidyr)
 # Convert data to long format
 data_long <- data |> 
   pivot_longer(cols = rec_PET:rec_PS, names_to = "plastic_type", values_to = "rec")
-# Calculate the proportions of each response
+# Calculate the proportions and order data
 data_proportions <- data_long |> 
   group_by(plastic_type, rec) |> 
   summarise(count = n(), .groups = "drop") |> 
   group_by(plastic_type) |> 
-  mutate(proportion = count / sum(count))
+  mutate(proportion = count / sum(count)) |> 
+  ungroup()
+order_data <- data_proportions |> 
+  filter(rec == "Yes") |> 
+  arrange(desc(proportion))
+data_proportions$plastic_type <- factor(data_proportions$plastic_type, levels = order_data$plastic_type)
 # Create the stacked bar chart
-ggplot(data_proportions, aes(x = plastic_type, y = proportion, fill = rec)) +
+plastic_type_labels <- c("PET", "HDPE", "LDPE", "PP", "PS")
+ggplot(data_proportions, aes(x = plastic_type, y = proportion, fill = factor(rec, levels = c("Yes", "No", "Sometimes")))) +
   geom_bar(stat = "identity") +
   scale_y_continuous(labels = scales::label_percent()) +
+  scale_x_discrete(labels = plastic_type_labels) +
+  scale_fill_manual(values = c("Yes" = "#009999", "No" = "#FF9966", "Sometimes" = "#FFCCCC"), labels = c("yes", "no", "sometimes")) +
   labs(
     title = "Recycled plastics",
-    x = "Plastic type",
-    y = "Proportion",
-    fill = "Recycle"
+    x = "plastic type",
+    y = "proportion",
+    fill = "recycle"
   ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
 ```
-
+Next, we can investigate the plastic waste source.
 
 # Conclusions
 
