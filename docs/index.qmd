@@ -20,7 +20,7 @@ bibliography: margauxgo.bib
 ---
 # Introduction
 
-Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually @2023year. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively @turuban2024why. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?
+Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually [@2023europe]. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively [@turuban2024why]. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?
 
 # Methods
 
@@ -165,7 +165,7 @@ ggplot(summary_table_bottles, aes(x = use_plastic_bottles, y = count,
 As displayed in @fig-bottles, almost every respondent owns a reusable bottle. This did not allow us to find a link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. However, this allows to clearly see that most of the population still uses single-use plastic bottles weekly.
 
 ## Willingness to separate different types of plastic at home before collection
-Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times @recycling.
+Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times [@recycling].
 
 # Conclusions
 
