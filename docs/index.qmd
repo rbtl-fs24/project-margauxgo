@@ -31,38 +31,55 @@ Data was collected via a questionnaire distributed through Google Forms as part 
 Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic?
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
-# Load required libraries
+#| label: tbl-recycle-rate
+#| tbl-cap: "Plastic recycling rate"
+
+# Load required libraries -----------------------------------
 library(tidyverse)
 library(readxl)
 library(janitor)
 library(dplyr)
 library(knitr)
 library(kableExtra)
-# Import data
+
+# Import data -----------------------------------------------
 data <- read_csv("../data/processed/plastic_waste_processed.csv")
-# Compute age mean
-age_mean <- mean(data$age, na.rm = TRUE)
-# Compute plastic recycling rate
+
+# Compute plastic recycling rate ----------------------------
 recycling_summary <- data |> 
   group_by(rec_plastic) |> 
   summarise(count = n()) |> 
-  mutate(percentage = round(count / sum(count) * 100, digits = 2))
-# Create table
-kable(recycling_summary, format = "html", col.names = c("Recycle", "Count", "Percentage"),
-      align = "c") 
+  mutate(percentage = round(count / sum(count) * 100, digits = 1))
+
+# Create table ----------------------------------------------
+recycling_summary |> 
+  kable(align = "c")
+
+# Save data underlying the table ----------------------------
+#write_csv(here::here("data/final/tbl-gapminder-mean.csv"))
 ```
+```{r}
+# Compute age mean
+age_mean <- mean(data$age, na.rm = TRUE)
+```
+So, as displayed in @tbl-recycle-rate, almost every participant recycles plastic.
 
 Now, what kind of plastics is recycled the most? To answer this, let us use a stacked bar chart.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
-# Load required libraries
+#| label: fig-recycled-plastics
+#| fig-cap: "Proportion of recycled plastics per type"
+
+# Load required libraries -----------------------------------
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-# Convert data to long format
+
+# Convert data to long format -------------------------------
 data_long <- data |> 
   pivot_longer(cols = rec_PET:rec_PS, names_to = "plastic_type", values_to = "rec")
-# Calculate the proportions and order data
+
+# Calculate the proportions and order data ------------------
 data_proportions <- data_long |> 
   group_by(plastic_type, rec) |> 
   summarise(count = n(), .groups = "drop") |> 
@@ -73,7 +90,8 @@ order_data <- data_proportions |>
   filter(rec == "Yes") |> 
   arrange(desc(proportion))
 data_proportions$plastic_type <- factor(data_proportions$plastic_type, levels = order_data$plastic_type)
-# Create the stacked bar chart
+
+# Create the stacked bar chart ------------------------------
 plastic_type_labels <- c("PET", "HDPE", "LDPE", "PP", "PS")
 ggplot(data_proportions, aes(x = plastic_type, y = proportion, fill = factor(rec, levels = c("Yes", "No", "Sometimes")))) +
   geom_bar(stat = "identity") +
@@ -88,7 +106,12 @@ ggplot(data_proportions, aes(x = plastic_type, y = proportion, fill = factor(rec
   ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
+
+# Save data underlying the figure ---------------------------
+#write_csv(here::here("data/final/tbl-gapminder-mean.csv"))
 ```
+As expected, @fig-recycled-plastics shows that the most recycled type of plastic is PET - water bottles and plastic trays.
+
 Next, we can investigate the plastic waste source.
 
 # Conclusions

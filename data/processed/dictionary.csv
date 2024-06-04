@@ -1,0 +1,22 @@
+variable_name,description
+id,Unique ID
+age,Age
+rec_plastic,Do you recycle plastic?
+rec_PET,Do you recycle Polyethylene Terephthalate (PET) – water bottles and plastic trays?
+rec_HDPE,Do you recycle High Density Polyethylene (HDPE) – milk jugs and shampoo bottles?
+rec_PP,Do you recycle Polypropylene (PP) – margarine tubs and ready-meal trays?
+rec_LDPE,Do you recycle Low Density Polyethylene (LDPE) – food bags?
+rec_PS,Do you recycle Polystyrene (PS) – plastic cutlery?
+plastic_impact_health,Please list the principal ways in which you believe plastic waste affects our health.
+plastic_waste_source,Where does your plastic waste mostly come from?
+use_plastic_bottles,How often do you use single-use plastic bottles?
+own_reusable_bottle,Do you own a reusable bottle or cup that you use regularly?
+willing_separate,Would you be willing to separate different types of plastics at home for collection?
+investment,"If yes, what do you consider the most significant investment for doing so?"
+city_rec_bins,Should the city provide more recycling bins in public areas to encourage you to recycle plastic more?
+city_plastic_dr,Should the city implement a plastic deposit-return scheme to encourage you to recycle plastic more?
+city_incentives,Should the city offer incentives or rewards for recycling to encourage you to recycle plastic more?
+city_awareness,Should the city increase public awareness campaigns about the importance of recycling to encourage you to recycle plastic more?
+use_plastic_bags,How often do you use plastic bags?
+plastic_kg_year,Approximately how many kilograms of plastic waste do you think you produce per year?
+confident,How confident are you about your answer to the previous question?
