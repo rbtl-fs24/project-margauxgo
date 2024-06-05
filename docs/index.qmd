@@ -6,7 +6,7 @@ date: 06-06-2024
 author:
   - name: Margaux Götschmann
     affiliation:
-      - name: 'ETH Zürich, Research Beyond the Lab: Open Science and Research Methods for a Global Engineer'
+      - name: 'ETH Zürich'
 table-of-contents: true
 execute: 
   echo: true
@@ -19,6 +19,16 @@ editor: visual
 bibliography: bibliography.bib
 ---
 
+```{css, echo = FALSE}
+.justify {
+  text-align: justify !important
+}
+```
+::: {.justify}
+This project is part of an assignment for the course 'Research Beyond the Lab: Open Science and Research Methods for a Global Engineer' taught at ETH Zürich.
+
+![[Source](https://www.ebp.ch/en/node/1225): Plastic Recycling in Switzerland \| EBP \| Swiss](plastic.jpeg)
+
 # Introduction
 
 Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually [@2023europe]. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively [@turuban2024why]. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?
@@ -29,9 +39,11 @@ Data was collected via a questionnaire distributed through Google Forms as part 
 
 # Results
 
+This section presents findings related to the second part of the research question. Due to time constraints, the analysis of the first part of the question is omitted. Specifically, this chapter examines the overall plastic recycling rate, the recycling rate per type of plastic, the relationship between the use of single-use plastic bottles and ownership of a reusable bottle, and the willingness to separate different types of plastic at home before collection.
+
 ## Plastic recycling rate
 
-Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic? For simplicity, we computed the age mean internally and got 24 years old. Concerning the plastic recycling rate, our results were computed as follows.
+We start by looking at our respondents. What is the average age, and does everyone recycle plastic? For simplicity, we computed the average age internally and found it to be 24 years old. Regarding the plastic recycling rate, our results were calculated as follows.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE, class.source= "fold-hide"}
 #| label: tbl-recycle-rate
@@ -68,7 +80,7 @@ write_csv(recycling_summary,
           here::here("data/final/tbl-recycle-rate.csv"))
 ```
 
-So, as displayed in @tbl-recycle-rate, we got a plastic recycling rate of 95.2%, meaning that almost every participant recycles plastic. So far so good. Now, what type of plastic is recycled the most? Do also everyone recycle every kind of plastic? To answer this, let us create a stacked bar chart displaying plastic recycling rates for each type of plastic.
+As shown in @tbl-recycle-rate, the plastic recycling rate is 95.2%, indicating that almost every participant recycles plastic. This is a promising start. But which type of plastic is recycled the most? Does everyone recycle all types of plastic? To answer this, we choose to create a stacked bar chart displaying the recycling rates for each type of plastic.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
 #| label: fig-recycled-plastics
@@ -126,11 +138,11 @@ write_csv(data_proportions,
           here::here("data/final/fig-recycled-plastics.csv"))
 ```
 
-As expected, @fig-recycled-plastics shows that the most recycled type of plastic is Polyethylene Terephthalate (PET) - water bottles and plastic trays with a recycling rate of 100%. In contrary, Low Density Polyethylene (LDPE) – food bags, Polypropylene (PP) – margarine tubs and ready-meal trays and Polystyrene (PS) – plastic cutlery are not recycled by the majority of the population.
+As expected, @fig-recycled-plastics showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population.
 
-## Relation between use of single-use plastic bottles and ownership of reusable bottle
+## Relationship between single-use plastic bottle usage and reusable bottle ownership
 
-Next, we can investigate the use of single-use plastic bottles, and how this is related to the ownership of a reusable bottle. To do so, we use bar charts.
+Moving forward, let us delve into the usage of single-use plastic bottles and how it correlates with the ownership of a reusable bottle. To accomplish this, we will employ bar charts.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
 #| label: fig-bottles
@@ -180,11 +192,11 @@ write_csv(summary_table_bottles,
           here::here("data/final/fig-bottles.csv"))
 ```
 
-As displayed in @fig-bottles, almost every respondent owns a reusable bottle. This did not allow us to find a link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. However, this allows to clearly see that most of the population still uses single-use plastic bottles weekly.
+As displayed in @fig-bottles, nearly every respondent owns a reusable bottle. However, we did not find a clear link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. Nonetheless, it is evident that a majority of the population still uses single-use plastic bottles weekly.
 
 ## Willingness to separate different types of plastic at home before collection
 
-Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times [@recycling]. For this, we chose to create a horizontal bar chart.
+Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times [@recycling], highlighting the importance of this practice. Our data presentation choice is a horizontal bar chart.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
 #| label: fig-willingness
@@ -255,7 +267,7 @@ write_csv(long_table,
           here::here("data/final/fig-willingness.csv"))
 ```
 
-As displayed in @fig-willingness, the majority of the population is willing to separate plastics at home before collection. However, the lack of space comes first for a reason to not to so, followed by the lack of time.
+In @fig-willingness, we observe that a majority of the population is willing to separate plastics at home before collection. However, space constraints are cited as the primary reason for not doing so, followed by time constraints.
 
 # Conclusions
 
@@ -268,3 +280,4 @@ The findings of our study can be summarised in three major points.
 -   
 
 # References
+:::

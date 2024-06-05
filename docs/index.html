@@ -94,27 +94,10 @@ div.csl-indent {
 
 </head>
 
-<body>
+<body class="fullcontent">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
-  <ul class="collapse">
-  <li><a href="#plastic-recycling-rate" id="toc-plastic-recycling-rate" class="nav-link" data-scroll-target="#plastic-recycling-rate">Plastic recycling rate</a></li>
-  <li><a href="#relation-between-use-of-single-use-plastic-bottles-and-ownership-of-reusable-bottle" id="toc-relation-between-use-of-single-use-plastic-bottles-and-ownership-of-reusable-bottle" class="nav-link" data-scroll-target="#relation-between-use-of-single-use-plastic-bottles-and-ownership-of-reusable-bottle">Relation between use of single-use plastic bottles and ownership of reusable bottle</a></li>
-  <li><a href="#willingness-to-separate-different-types-of-plastic-at-home-before-collection" id="toc-willingness-to-separate-different-types-of-plastic-at-home-before-collection" class="nav-link" data-scroll-target="#willingness-to-separate-different-types-of-plastic-at-home-before-collection">Willingness to separate different types of plastic at home before collection</a></li>
-  </ul></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
-</div>
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -132,7 +115,7 @@ div.csl-indent {
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            ETH Zürich, Research Beyond the Lab: Open Science and Research Methods for a Global Engineer
+            ETH Zürich
           </p>
       </div>
   </div>
@@ -161,6 +144,21 @@ div.csl-indent {
 </header>
 
 
+<div class="cell">
+<style type="text/css">
+.justify {
+  text-align: justify !important
+}
+</style>
+</div>
+<div class="justify">
+<p>This project is part of an assignment for the course ‘Research Beyond the Lab: Open Science and Research Methods for a Global Engineer’ taught at ETH Zürich.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plastic.jpeg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.ebp.ch/en/node/1225">Source</a>: Plastic Recycling in Switzerland | EBP | Swiss</figcaption>
+</figure>
+</div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually <span class="citation" data-cites="2023europe">(<a href="#ref-2023europe" role="doc-biblioref"><span>“Europe’s Laggard: <span>Switzerland</span>’s <span>Plastic Problem</span>”</span> 2023</a>)</span>. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively <span class="citation" data-cites="turuban2024why">(<a href="#ref-turuban2024why" role="doc-biblioref">Turuban 2024</a>)</span>. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?</p>
@@ -171,9 +169,10 @@ div.csl-indent {
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<p>This section presents findings related to the second part of the research question. Due to time constraints, the analysis of the first part of the question is omitted. Specifically, this chapter examines the overall plastic recycling rate, the recycling rate per type of plastic, the relationship between the use of single-use plastic bottles and ownership of a reusable bottle, and the willingness to separate different types of plastic at home before collection.</p>
 <section id="plastic-recycling-rate" class="level2">
 <h2 class="anchored" data-anchor-id="plastic-recycling-rate">Plastic recycling rate</h2>
-<p>Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic? For simplicity, we computed the age mean internally and got 24 years old. Concerning the plastic recycling rate, our results were computed as follows.</p>
+<p>We start by looking at our respondents. What is the average age, and does everyone recycle plastic? For simplicity, we computed the average age internally and found it to be 24 years old. Regarding the plastic recycling rate, our results were calculated as follows.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r fold-hide code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries -----------------------------------</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -241,7 +240,7 @@ Table&nbsp;1: Plastic recycling rate
 </figure>
 </div>
 </div>
-<p>So, as displayed in <a href="#tbl-recycle-rate" class="quarto-xref">Table&nbsp;1</a>, we got a plastic recycling rate of 95.2%, meaning that almost every participant recycles plastic. So far so good. Now, what type of plastic is recycled the most? Do also everyone recycle every kind of plastic? To answer this, let us create a stacked bar chart displaying plastic recycling rates for each type of plastic.</p>
+<p>As shown in <a href="#tbl-recycle-rate" class="quarto-xref">Table&nbsp;1</a>, the plastic recycling rate is 95.2%, indicating that almost every participant recycles plastic. This is a promising start. But which type of plastic is recycled the most? Does everyone recycle all types of plastic? To answer this, we choose to create a stacked bar chart displaying the recycling rates for each type of plastic.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries -----------------------------------</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -306,11 +305,11 @@ Figure&nbsp;1: Proportion of recycled plastics per type
 </div>
 </div>
 </div>
-<p>As expected, <a href="#fig-recycled-plastics" class="quarto-xref">Figure&nbsp;1</a> shows that the most recycled type of plastic is Polyethylene Terephthalate (PET) - water bottles and plastic trays with a recycling rate of 100%. In contrary, Low Density Polyethylene (LDPE) – food bags, Polypropylene (PP) – margarine tubs and ready-meal trays and Polystyrene (PS) – plastic cutlery are not recycled by the majority of the population.</p>
+<p>As expected, <a href="#fig-recycled-plastics" class="quarto-xref">Figure&nbsp;1</a> showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population.</p>
 </section>
-<section id="relation-between-use-of-single-use-plastic-bottles-and-ownership-of-reusable-bottle" class="level2">
-<h2 class="anchored" data-anchor-id="relation-between-use-of-single-use-plastic-bottles-and-ownership-of-reusable-bottle">Relation between use of single-use plastic bottles and ownership of reusable bottle</h2>
-<p>Next, we can investigate the use of single-use plastic bottles, and how this is related to the ownership of a reusable bottle. To do so, we use bar charts.</p>
+<section id="relationship-between-single-use-plastic-bottle-usage-and-reusable-bottle-ownership" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-between-single-use-plastic-bottle-usage-and-reusable-bottle-ownership">Relationship between single-use plastic bottle usage and reusable bottle ownership</h2>
+<p>Moving forward, let us delve into the usage of single-use plastic bottles and how it correlates with the ownership of a reusable bottle. To accomplish this, we will employ bar charts.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table --------------------------------------</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
@@ -367,11 +366,11 @@ Figure&nbsp;2: Single-use plastic bottles use
 </div>
 </div>
 </div>
-<p>As displayed in <a href="#fig-bottles" class="quarto-xref">Figure&nbsp;2</a>, almost every respondent owns a reusable bottle. This did not allow us to find a link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. However, this allows to clearly see that most of the population still uses single-use plastic bottles weekly.</p>
+<p>As displayed in <a href="#fig-bottles" class="quarto-xref">Figure&nbsp;2</a>, nearly every respondent owns a reusable bottle. However, we did not find a clear link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. Nonetheless, it is evident that a majority of the population still uses single-use plastic bottles weekly.</p>
 </section>
 <section id="willingness-to-separate-different-types-of-plastic-at-home-before-collection" class="level2">
 <h2 class="anchored" data-anchor-id="willingness-to-separate-different-types-of-plastic-at-home-before-collection">Willingness to separate different types of plastic at home before collection</h2>
-<p>Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times <span class="citation" data-cites="recycling">(<a href="#ref-recycling" role="doc-biblioref"><span>“<span>The recycling solution for plastics from households <span></span> Sammelsack</span>”</span> n.d.</a>)</span>. For this, we chose to create a horizontal bar chart.</p>
+<p>Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times <span class="citation" data-cites="recycling">(<a href="#ref-recycling" role="doc-biblioref"><span>“<span>The recycling solution for plastics from households <span></span> Sammelsack</span>”</span> n.d.</a>)</span>, highlighting the importance of this practice. Our data presentation choice is a horizontal bar chart.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table --------------------------------------</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
@@ -449,7 +448,7 @@ Figure&nbsp;3: Willingness to separate plastics at home
 </div>
 </div>
 </div>
-<p>As displayed in <a href="#fig-willingness" class="quarto-xref">Figure&nbsp;3</a>, the majority of the population is willing to separate plastics at home before collection. However, the lack of space comes first for a reason to not to so, followed by the lack of time.</p>
+<p>In <a href="#fig-willingness" class="quarto-xref">Figure&nbsp;3</a>, we observe that a majority of the population is willing to separate plastics at home before collection. However, space constraints are cited as the primary reason for not doing so, followed by time constraints.</p>
 </section>
 </section>
 <section id="conclusions" class="level1">
@@ -461,10 +460,11 @@ Figure&nbsp;3: Willingness to separate plastics at home
 <li></li>
 </ul>
 </section>
-<section id="references" class="level1 unnumbered">
-
-
+<section id="references" class="level1">
+<h1>References</h1>
 </section>
+</div>
+
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-2023europe" class="csl-entry" role="listitem">
