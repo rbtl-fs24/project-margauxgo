@@ -16,8 +16,9 @@ keywords:
   - plastic waste
   - waste management
 editor: visual
-bibliography: margauxgo.bib
+bibliography: bibliography.bib
 ---
+
 # Introduction
 
 Switzerland faces significant challenges in recycling plastic waste. Each person in the country produces an average of 95 kg of plastic waste annually [@2023europe]. According to Patrick Semadeni, vice president of KUNSTOFF.swiss, Switzerland lacks the separation and recycling capacity to process all the collected plastic waste effectively [@turuban2024why]. This survey seeks to gain insights into the plastic waste management practices of individuals under 30 years old living in Switzerland. A potential solution could be separating different types of plastics at home for collection. The study aims to answer the following research question: To what extent are individuals under 30 in Switzerland aware of the environmental and health impacts of plastic? How do they recycle different types of plastics, and how willing are they to modify their plastic consumption and waste management practices?
@@ -27,7 +28,9 @@ Switzerland faces significant challenges in recycling plastic waste. Each person
 Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize outliers and provide a focused perspective on the targeted demographic.
 
 # Results
+
 ## Plastic recycling rate
+
 Let us start by having a look at our respondents. What is the age mean and does everyone recycle plastic? For simplicity, we computed the age mean internally and got 24 years old. Concerning the plastic recycling rate, our results were computed as follows.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE, class.source= "fold-hide"}
@@ -61,7 +64,8 @@ recycling_summary |>
   kable(align = "c")
 
 # Save data underlying the table ----------------------------
-#write_csv(here::here("data/final/tbl-gapminder-mean.csv"))
+write_csv(recycling_summary, 
+          here::here("data/final/tbl-recycle-rate.csv"))
 ```
 
 So, as displayed in @tbl-recycle-rate, we got a plastic recycling rate of 95.2%, meaning that almost every participant recycles plastic. So far so good. Now, what type of plastic is recycled the most? Do also everyone recycle every kind of plastic? To answer this, let us create a stacked bar chart displaying plastic recycling rates for each type of plastic.
@@ -85,14 +89,17 @@ data_proportions <- data_long |>
   group_by(plastic_type) |> 
   mutate(proportion = count / sum(count)) |> 
   ungroup()
+
 order_data <- data_proportions |> 
   filter(rec == "Yes") |> 
   arrange(desc(proportion))
+
 data_proportions$plastic_type <- factor(data_proportions$plastic_type, 
                                         levels = order_data$plastic_type)
 
 # Create the stacked bar chart ------------------------------
 plastic_type_labels <- c("PET", "HDPE", "LDPE", "PP", "PS")
+
 ggplot(data_proportions, aes(x = plastic_type, y = proportion, 
                              fill = factor(rec, 
                                            levels = c("Yes", "No", "Sometimes")))) +
@@ -115,12 +122,14 @@ ggplot(data_proportions, aes(x = plastic_type, y = proportion,
         plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
 
 # Save data underlying the figure ---------------------------
-#write_csv(here::here("data/final/tbl-gapminder-mean.csv"))
+write_csv(data_proportions, 
+          here::here("data/final/fig-recycled-plastics.csv"))
 ```
 
 As expected, @fig-recycled-plastics shows that the most recycled type of plastic is Polyethylene Terephthalate (PET) - water bottles and plastic trays with a recycling rate of 100%. In contrary, Low Density Polyethylene (LDPE) – food bags, Polypropylene (PP) – margarine tubs and ready-meal trays and Polystyrene (PS) – plastic cutlery are not recycled by the majority of the population.
 
 ## Relation between use of single-use plastic bottles and ownership of reusable bottle
+
 Next, we can investigate the use of single-use plastic bottles, and how this is related to the ownership of a reusable bottle. To do so, we use bar charts.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
@@ -128,15 +137,18 @@ Next, we can investigate the use of single-use plastic bottles, and how this is 
 #| fig-cap: "Single-use plastic bottles use"
 
 # Create summary table --------------------------------------
-data <- data %>%
+data <- data |> 
   mutate(own_reusable_bottle = factor(own_reusable_bottle, levels = c("Yes", "No")))
+
 summary_table_bottles <- data |> 
   group_by(use_plastic_bottles, own_reusable_bottle) |> 
   summarise(count = n()) |> 
   ungroup()
+
 order_data_bottles <- summary_table_bottles |> 
   filter(own_reusable_bottle == "Yes") |> 
   arrange(desc(count))
+
 summary_table_bottles$use_plastic_bottles <- 
   factor(summary_table_bottles$use_plastic_bottles, 
          levels = order_data_bottles$use_plastic_bottles)
@@ -144,6 +156,7 @@ summary_table_bottles$use_plastic_bottles <-
 # Create bar plot
 bottles_labels <- c("weekly", "few times a year", "daily", "few times a month", 
                     "never", "monthly")
+
 ggplot(summary_table_bottles, aes(x = use_plastic_bottles, y = count, 
                                   fill = own_reusable_bottle)) +
   geom_bar(stat = "identity", position = "stack") +
@@ -161,19 +174,97 @@ ggplot(summary_table_bottles, aes(x = use_plastic_bottles, y = count,
         axis.title.x = element_text(margin = margin(t = 10)),
         axis.title.y = element_text(margin = margin(r = 10)),
         plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
+
+# Save data underlying the figure ---------------------------
+write_csv(summary_table_bottles, 
+          here::here("data/final/fig-bottles.csv"))
 ```
+
 As displayed in @fig-bottles, almost every respondent owns a reusable bottle. This did not allow us to find a link between the frequency of single-use plastic bottle use and the ownership of a reusable bottle. However, this allows to clearly see that most of the population still uses single-use plastic bottles weekly.
 
 ## Willingness to separate different types of plastic at home before collection
-Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times [@recycling].
+
+Lastly, it is interesting to have a look at the data collected about the willingness to separate plastics at home before collection. Indeed, if household plastics are collected, sorted and processed correctly, they can be recycled two, three, four or more times [@recycling]. For this, we chose to create a horizontal bar chart.
+
+```{r, message=FALSE, warning=FALSE, include=TRUE}
+#| label: fig-willingness
+#| fig-cap: "Willingness to separate plastics at home"
+
+# Create summary table --------------------------------------
+data <- data |> 
+  mutate(willing_separate = factor(willing_separate, levels = c("Yes", "No")))
+
+summary_table_willingness <- data |> 
+  group_by(investment, willing_separate) |> 
+  summarise(count = n()) |> 
+  ungroup()
+
+order_data_willingness <- summary_table_willingness |> 
+  filter(willing_separate == "Yes") |> 
+  arrange(desc(count))
+
+summary_table_willingness$investment <- 
+  factor(summary_table_willingness$investment, 
+         levels = order_data_willingness$investment)
+
+# Split data for Yes and No --------------------------------
+summary_table_yes <- 
+  summary_table_willingness |> 
+  filter(willing_separate == "Yes") |> 
+  select(investment, count) |> 
+  rename(Yes = count)
+
+summary_table_no <- 
+  summary_table_willingness |> 
+  filter(willing_separate == "No") |> 
+  select(investment, count) |> 
+  rename(No = count)
+
+merged_table <- full_join(summary_table_yes, 
+                          summary_table_no, 
+                          by = 
+                            "investment") |> 
+  replace_na(list(Yes = 0, No = 0))
+
+long_table <- merged_table |> 
+  pivot_longer(cols = c("Yes", "No"), names_to = "response", values_to = "count")
+
+long_table$investment <- 
+  factor(long_table$investment, levels = order_data_willingness$investment)
+
+# Create butterfly chart -----------------------------------
+ggplot(long_table, 
+       aes(x = investment, y = count, fill = response)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10)) +
+  scale_fill_manual(values = c("Yes" = "#FF9900", "No" = "#990066"), 
+                    labels = c("no", "yes")) +
+  coord_flip() +
+  labs(title = "Willingness to separate vs. most significant investment",
+       x = NULL,
+       y = "count",
+       fill = "willingness") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(hjust = 0.5),
+        axis.title.x = element_text(margin = margin(t = 10)),
+        axis.title.y = element_text(margin = margin(r = 10)),
+        plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
+
+# Save data underlying the figure ---------------------------
+write_csv(long_table, 
+          here::here("data/final/fig-willingness.csv"))
+```
+
+As displayed in @fig-willingness, the majority of the population is willing to separate plastics at home before collection. However, the lack of space comes first for a reason to not to so, followed by the lack of time.
 
 # Conclusions
 
--
--
--
+The findings of our study can be summarised in three major points.
+
+-   
+
+-   
+
+-   
 
 # References
-
-
-
