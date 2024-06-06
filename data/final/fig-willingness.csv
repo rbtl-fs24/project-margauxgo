@@ -1,15 +1,8 @@
-investment,response,count
-Mental capacity,Yes,1
-Mental capacity,No,0
-Money,Yes,1
-Money,No,0
-Space,Yes,9
-Space,No,2
-Time,Yes,4
-Time,No,0
-To persue my flatmates to do so aswell,Yes,1
-To persue my flatmates to do so aswell,No,0
-Where to dispose the trash,Yes,1
-Where to dispose the trash,No,0
-NA,Yes,0
-NA,No,2
+investment,count,percentage
+Space,11,0.5238095238095238
+Time,4,0.19047619047619047
+Mental capacity,1,0.047619047619047616
+Money,1,0.047619047619047616
+To persue my flatmates to do so aswell,1,0.047619047619047616
+Where to dispose the trash,1,0.047619047619047616
+NA,2,0.09523809523809523

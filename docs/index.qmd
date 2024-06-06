@@ -35,7 +35,7 @@ Switzerland faces significant challenges in recycling plastic waste. Each person
 :::
 # Methods
 ::: {.justify}
-Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize outliers and provide a focused perspective on the targeted demographic.
+Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize age-related outliers and provide a focused perspective on the targeted demographic.
 :::
 # Results
 ::: {.justify}
@@ -138,7 +138,7 @@ write_csv(data_proportions,
           here::here("data/final/fig-recycled-plastics.csv"))
 ```
 
-As expected, @fig-recycled-plastics showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population.
+As expected, @fig-recycled-plastics showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population, possibly due to a lack of information.
 :::
 ## Relationship between single-use plastic bottle usage and reusable bottle ownership
 ::: {.justify}
@@ -196,12 +196,31 @@ As displayed in @fig-bottles, nearly every respondent owns a reusable bottle. Ho
 :::
 ## Willingness to separate different types of plastic at home before collection
 ::: {.justify}
-Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times [@recycling], highlighting the importance of this practice. Our data presentation choice is a horizontal bar chart.
+Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times [@recycling], highlighting the importance of this practice. We first summarize our data in a table.
 
 ```{r, message=FALSE, warning=FALSE, include=TRUE}
-#| label: fig-willingness
-#| fig-cap: "Willingness to separate plastics at home"
+#| label: tbl-willingness-investment
+#| tbl-cap: "Willingness to separate different types of plastic at home before collection and most significant investment for doing so"
 
+# Create summary table --------------------------------------
+data <- data |> 
+  mutate(willing_separate = factor(willing_separate, levels = c("Yes", "No")))
+
+summary_table_willingness <- data |> 
+  group_by(willing_separate, investment) |> 
+  summarise(count = n()) |> 
+  arrange(desc(count))
+
+# Display table
+summary_table_willingness |> 
+  kable(align = "c")
+
+# Save data underlying the table ----------------------------
+write_csv(summary_table_willingness, 
+          here::here("data/final/tbl-willingness-investment.csv"))
+```
+From @tbl-willingness-investment, we see that 4 out of 21 respondents are not willing to separate plastics at home before collection, a clear minority. Among those unwilling, space constraints are the most commonly cited reason, while some did not provide a justification. To illustrate the distribution of the most significant investments cited for separating plastics at home, we will create a donut chart.
+```{r, message=FALSE, warning=FALSE, include=FALSE}
 # Create summary table --------------------------------------
 data <- data |> 
   mutate(willing_separate = factor(willing_separate, levels = c("Yes", "No")))
@@ -244,7 +263,7 @@ long_table <- merged_table |>
 long_table$investment <- 
   factor(long_table$investment, levels = order_data_willingness$investment)
 
-# Create butterfly chart -----------------------------------
+# Create bar chart -----------------------------------
 ggplot(long_table, 
        aes(x = investment, y = count, fill = response)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
@@ -261,13 +280,42 @@ ggplot(long_table,
         axis.title.x = element_text(margin = margin(t = 10)),
         axis.title.y = element_text(margin = margin(r = 10)),
         plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"))
+```
+
+```{r, message=FALSE, warning=FALSE, include=TRUE}
+#| label: fig-willingness
+#| fig-cap: "Distribution of constraints for separating plastics at home"
+
+# Create summary for donut chart --------------------------
+donut_data <- summary_table_willingness |> 
+  group_by(investment) |> 
+  summarise(count = sum(count)) |> 
+  mutate(percentage = count / sum(count))
+
+# Create donut chart --------------------------------------
+investment_colors <- c("Space" = "#66C2A5", "Time" = "#FC8D62", "Money" = "#8DA0CB", 
+                       "Mental capacity" = "#E78AC3", 
+                       "To persue my flatmates to do so aswell" = "#A6D854", 
+                       "Where to dispose the trash" = "lightblue", "NA" = "#FFD92F")
+
+ggplot(donut_data, aes(x = 2, y = percentage, fill = investment)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 0) +
+  xlim(0.5, 2.5) +
+  scale_fill_manual(values = investment_colors) +
+  labs(title = "Distribution of mentioned 
+       constraints related to separating plastics at home",
+       fill = "constraint") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", color = "#333333"),
+        legend.position = "right")
 
 # Save data underlying the figure ---------------------------
-write_csv(long_table, 
+write_csv(donut_data, 
           here::here("data/final/fig-willingness.csv"))
 ```
 
-In @fig-willingness, we observe that a majority of the population is willing to separate plastics at home before collection. Among those who are not willing, space constraints are the most commonly cited reason, while some did not provide a justification. Overall, space constraints are identified as the most significant barrier to separating plastics at home, followed by time constraints.
+In @fig-willingness, we observe that space constraints are identified as the most significant barrier to separating plastics at home, with more than half of the respondents citing it. The second most significant investment is time. These insights highlight the practical challenges individuals face in adopting sustainable waste management practices.
 :::
 # Conclusions
 ::: {.justify}

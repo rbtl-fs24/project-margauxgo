@@ -186,7 +186,7 @@ div.csl-indent {
 <section id="methods" class="level1">
 <h1>Methods</h1>
 <div class="justify">
-<p>Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize outliers and provide a focused perspective on the targeted demographic.</p>
+<p>Data was collected via a questionnaire distributed through Google Forms as part of a project for the Research Beyond The Lab course at ETH Zurich. The 21 respondents, all under 30 years old and residing in Zurich, volunteered to complete the questionnaire. The sample was selected to ensure consistency in age, as the study was conducted by an ETH Zurich student. This approach aimed to minimize age-related outliers and provide a focused perspective on the targeted demographic.</p>
 </div>
 </section>
 <section id="results" class="level1">
@@ -330,7 +330,7 @@ Figure&nbsp;1: Proportion of recycled plastics by type
 </div>
 </div>
 </div>
-<p>As expected, <a href="#fig-recycled-plastics" class="quarto-xref">Figure&nbsp;1</a> showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population.</p>
+<p>As expected, <a href="#fig-recycled-plastics" class="quarto-xref">Figure&nbsp;1</a> showcases that Polyethylene Terephthalate (PET) - used for water bottles and plastic trays - achieves the highest recycling rate of 100%. Conversely, Low Density Polyethylene (LDPE) - employed in food bags, Polypropylene (PP) - found in margarine tubs and ready-meal trays, and Polystyrene (PS) - utilized for plastic cutlery, are not recycled by the majority of the population, possibly due to a lack of information.</p>
 </div>
 </section>
 <section id="relationship-between-single-use-plastic-bottle-usage-and-reusable-bottle-ownership" class="level2">
@@ -399,71 +399,115 @@ Figure&nbsp;2: Single-use plastic bottle usage
 <section id="willingness-to-separate-different-types-of-plastic-at-home-before-collection" class="level2">
 <h2 class="anchored" data-anchor-id="willingness-to-separate-different-types-of-plastic-at-home-before-collection">Willingness to separate different types of plastic at home before collection</h2>
 <div class="justify">
-<p>Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times <span class="citation" data-cites="recycling">(<a href="#ref-recycling" role="doc-biblioref"><span>“<span>The recycling solution for plastics from households <span></span> Sammelsack</span>”</span> n.d.</a>)</span>, highlighting the importance of this practice. Our data presentation choice is a horizontal bar chart.</p>
+<p>Finally, we examine the willingness to separate plastics at home before collection. Properly collected and sorted household plastics can undergo recycling multiple times <span class="citation" data-cites="recycling">(<a href="#ref-recycling" role="doc-biblioref"><span>“<span>The recycling solution for plastics from households <span></span> Sammelsack</span>”</span> n.d.</a>)</span>, highlighting the importance of this practice. We first summarize our data in a table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary table --------------------------------------</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">willing_separate =</span> <span class="fu">factor</span>(willing_separate, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>)))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>summary_table_willingness <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investment, willing_separate) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(willing_separate, investment) <span class="sc">|&gt;</span> </span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>order_data_willingness <span class="ot">&lt;-</span> summary_table_willingness <span class="sc">|&gt;</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(willing_separate <span class="sc">==</span> <span class="st">"Yes"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>summary_table_willingness<span class="sc">$</span>investment <span class="ot">&lt;-</span> </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(summary_table_willingness<span class="sc">$</span>investment, </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels =</span> order_data_willingness<span class="sc">$</span>investment)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data for Yes and No --------------------------------</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>summary_table_yes <span class="ot">&lt;-</span> </span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  summary_table_willingness <span class="sc">|&gt;</span> </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(willing_separate <span class="sc">==</span> <span class="st">"Yes"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(investment, count) <span class="sc">|&gt;</span> </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Yes =</span> count)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>summary_table_no <span class="ot">&lt;-</span> </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  summary_table_willingness <span class="sc">|&gt;</span> </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(willing_separate <span class="sc">==</span> <span class="st">"No"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(investment, count) <span class="sc">|&gt;</span> </span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">No =</span> count)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>merged_table <span class="ot">&lt;-</span> <span class="fu">full_join</span>(summary_table_yes, </span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                          summary_table_no, </span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> </span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"investment"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">Yes =</span> <span class="dv">0</span>, <span class="at">No =</span> <span class="dv">0</span>))</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>long_table <span class="ot">&lt;-</span> merged_table <span class="sc">|&gt;</span> </span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">names_to =</span> <span class="st">"response"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>)</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>long_table<span class="sc">$</span>investment <span class="ot">&lt;-</span> </span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(long_table<span class="sc">$</span>investment, <span class="at">levels =</span> order_data_willingness<span class="sc">$</span>investment)</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Create butterfly chart -----------------------------------</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(long_table, </span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> investment, <span class="at">y =</span> count, <span class="at">fill =</span> response)) <span class="sc">+</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Yes"</span> <span class="ot">=</span> <span class="st">"#FF9900"</span>, <span class="st">"No"</span> <span class="ot">=</span> <span class="st">"#990066"</span>), </span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"no"</span>, <span class="st">"yes"</span>)) <span class="sc">+</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Willingness to separate vs. most significant investment"</span>,</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"count"</span>,</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"willingness"</span>) <span class="sc">+</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>)),</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#333333"</span>))</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data underlying the figure ---------------------------</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(long_table, </span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>          here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/final/fig-willingness.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>summary_table_willingness <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data underlying the table ----------------------------</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(summary_table_willingness, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>          here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/final/tbl-willingness-investment.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-willingness-investment" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-willingness-investment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Willingness to separate different types of plastic at home before collection and most significant investment for doing so
+</figcaption>
+<div aria-describedby="tbl-willingness-investment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">willing_separate</th>
+<th style="text-align: center;">investment</th>
+<th style="text-align: center;">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Time</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Space</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Mental capacity</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Money</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">To persue my flatmates to do so aswell</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Where to dispose the trash</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>From <a href="#tbl-willingness-investment" class="quarto-xref">Table&nbsp;2</a>, we see that 4 out of 21 respondents are not willing to separate plastics at home before collection, a clear minority. Among those unwilling, space constraints are the most commonly cited reason, while some did not provide a justification. To illustrate the distribution of the most significant investments cited for separating plastics at home, we will create a donut chart.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary for donut chart --------------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>donut_data <span class="ot">&lt;-</span> summary_table_willingness <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investment) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">sum</span>(count)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create donut chart --------------------------------------</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>investment_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Space"</span> <span class="ot">=</span> <span class="st">"#66C2A5"</span>, <span class="st">"Time"</span> <span class="ot">=</span> <span class="st">"#FC8D62"</span>, <span class="st">"Money"</span> <span class="ot">=</span> <span class="st">"#8DA0CB"</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Mental capacity"</span> <span class="ot">=</span> <span class="st">"#E78AC3"</span>, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"To persue my flatmates to do so aswell"</span> <span class="ot">=</span> <span class="st">"#A6D854"</span>, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Where to dispose the trash"</span> <span class="ot">=</span> <span class="st">"lightblue"</span>, <span class="st">"NA"</span> <span class="ot">=</span> <span class="st">"#FFD92F"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(donut_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> percentage, <span class="at">fill =</span> investment)) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> investment_colors) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of mentioned </span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">       constraints related to separating plastics at home"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"constraint"</span>) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#333333"</span>),</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data underlying the figure ---------------------------</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(donut_data, </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>          here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/final/fig-willingness.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-willingness" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -471,13 +515,13 @@ Figure&nbsp;2: Single-use plastic bottle usage
 <img src="index_files/figure-html/fig-willingness-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-willingness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Willingness to separate plastics at home
+Figure&nbsp;3: Distribution of constraints for separating plastics at home
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-willingness" class="quarto-xref">Figure&nbsp;3</a>, we observe that a majority of the population is willing to separate plastics at home before collection. Among those who are not willing, space constraints are the most commonly cited reason, while some did not provide a justification. Overall, space constraints are identified as the most significant barrier to separating plastics at home, followed by time constraints.</p>
+<p>In <a href="#fig-willingness" class="quarto-xref">Figure&nbsp;3</a>, we observe that space constraints are identified as the most significant barrier to separating plastics at home, with more than half of the respondents citing it. The second most significant investment is time. These insights highlight the practical challenges individuals face in adopting sustainable waste management practices.</p>
 </div>
 </section>
 </section>
