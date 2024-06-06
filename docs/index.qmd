@@ -55,7 +55,6 @@ library(readxl)
 library(janitor)
 library(dplyr)
 library(knitr)
-library(kableExtra)
 
 # Import data -----------------------------------------------
 data <- read_csv("../data/processed/plastic_waste_processed.csv")
